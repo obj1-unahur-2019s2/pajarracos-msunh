@@ -1,0 +1,75 @@
+import pajarracos.*
+import islas.*
+
+test "isla" {
+	var paloma = new Paloma()
+	var aguilucho = new Aguilucho()
+	var albatros = new Albatros()
+	var aguiluchoColorado = new AguiluchoColorado()
+	var palomaTorcaza = new PalomaTorcaza()
+	var palomaMontera = new PalomaMontera()
+	var palomaManchada = new PalomaManchada()
+	var isla = new Isla()
+	isla.agregarAve(paloma)
+	isla.agregarAve(aguilucho)
+	isla.agregarAve(albatros)
+	isla.agregarAve(aguiluchoColorado)
+	isla.agregarAve(palomaTorcaza)
+	isla.agregarAve(palomaMontera)
+	isla.agregarAve(palomaManchada)
+	//assert.equals([ palomaMontera ], isla.aveCapitana())	
+	
+	palomaMontera.fuerza(800)
+	
+	assert.throwsException({isla.aveCapitana()})
+	
+	
+	
+
+}
+
+test "relax"{
+	var paloma = new Paloma()
+	var aguilucho = new Aguilucho()
+	var albatros = new Albatros()
+	var aguiluchoColorado = new AguiluchoColorado()
+	var palomaTorcaza = new PalomaTorcaza()
+	var palomaMontera = new PalomaMontera()
+	var palomaManchada = new PalomaManchada()
+	var isla = new Isla()
+	isla.agregarAve(paloma)
+	isla.agregarAve(aguilucho)
+	isla.agregarAve(albatros)
+	isla.agregarAve(aguiluchoColorado)
+	isla.agregarAve(palomaTorcaza)
+	isla.agregarAve(palomaMontera)
+	isla.agregarAve(palomaManchada)
+	
+	isla.sesionDeRelax()
+	
+	assert.equals(10,aguilucho.velocidad())
+	assert.equals(3700, albatros.peso())
+	assert.equals(150, paloma.ira())
+	
+}
+
+test "esta en paz" {
+	var paloma = new Paloma()
+	var albatros = new Albatros()
+	var palomaMontera = new PalomaMontera()
+	var isla = new Isla()
+	isla.agregarAve(paloma)
+	isla.agregarAve(albatros)
+	isla.agregarAve(palomaMontera)
+	assert.equals(2, isla.cantidadDeAvesDebiles())
+	assert.that(paloma.estaConforme(isla))
+	var aguilucho = new Aguilucho()
+	assert.that(aguilucho.estaConforme(isla))
+	isla.agregarAve(albatros)
+	var palomaMontera2 = new PalomaMontera()
+	assert.notThat(albatros.estaConforme(isla))
+	assert.notThat(isla.estaEnPaz())
+	isla.agregarAve(palomaMontera2)
+	assert.that(albatros.estaConforme(isla))
+	assert.that(isla.estaEnPaz())
+}

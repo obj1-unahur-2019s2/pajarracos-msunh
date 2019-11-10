@@ -1,0 +1,35 @@
+import pajarracos.*
+import islas.*
+
+test "aguilucho" {
+
+	var aguilucho1 = new Aguilucho(velocidad=40)
+
+	assert.equals(180, aguilucho1.fuerza())
+	
+	aguilucho1.recibirUnDisgusto()
+	
+	assert.equals(240, aguilucho1.fuerza())
+	
+	
+}
+
+test "albatros esta conforme o no"{
+var isla = new Isla()
+
+var palomaMontera = new PalomaMontera()
+var albatros = new Albatros()	
+var palomaMonterita = new PalomaMontera()
+
+isla.agregarAve(palomaMontera)
+isla.agregarAve(albatros)
+isla.agregarAve(palomaMonterita)
+
+assert.that(albatros.estaConforme(isla))
+
+palomaMonterita.fuerza(500)
+
+assert.notThat(albatros.estaConforme(isla))
+
+	
+}
